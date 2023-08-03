@@ -10,6 +10,16 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./key.js":
+/*!****************!*\
+  !*** ./key.js ***!
+  \****************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst key = \"cab84ff4fb064a0497d43816230308\";\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (key);\n\n\n//# sourceURL=webpack://weather-app/./key.js?");
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/stylesheet/style.css":
 /*!************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/stylesheet/style.css ***!
@@ -116,7 +126,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _stylesheet_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stylesheet/style.css */ \"./src/stylesheet/style.css\");\n\n\nconst content = document.querySelector('.content');\ncontent.textContent = 'Hello World'\n\n//# sourceURL=webpack://weather-app/./src/javascript/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _key__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../key */ \"./key.js\");\n/* harmony import */ var _stylesheet_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stylesheet/style.css */ \"./src/stylesheet/style.css\");\n\n\n\nconst content = document.querySelector(\".content\");\ncontent.textContent = \"Hello World\";\n\nconst apiKey = _key__WEBPACK_IMPORTED_MODULE_0__[\"default\"];\nconst city = \"salem\";\nconst url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;\n\nasync function getWeather(src) {\n  const response = await fetch(src, { mode: \"cors\" });\n  if (response.ok) {\n    const json = await response.json();\n    return json;\n  }\n  throw new Error(\"Invalid Request\");\n}\n\n// sync function calling an async func\nfunction displayWeather(src) {\n  const myWeather = getWeather(src);\n  myWeather\n    .then((data) => {\n      if (data) console.log(data.current);\n    })\n    .catch((err) => console.log(err));\n}\n\ndisplayWeather(url); \n\n\n//# sourceURL=webpack://weather-app/./src/javascript/index.js?");
 
 /***/ })
 
