@@ -26,3 +26,38 @@
     padding: 10px 20px;
     text-align: center;
 }
+
+.hidden{
+    display: none;
+}
+
+.search-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar, .search-bar:focus{
+    /* padding: 6px 10px; */
+    height: 35px;
+    padding: 0px 10px;
+    border-radius: 50px;
+    outline: 0px;
+    border: 2px solid cornflowerblue;
+    font-size: 14px;
+    font-weight: 500;
+    width: 400px;
+}
+
+.search-button{
+    height: 35px;
+    width: 35px;
+    border: 0px;
+    outline: 0px;
+    border-radius: 50px;
+    background-color: cornflowerblue;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}

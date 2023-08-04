@@ -3,13 +3,39 @@ import "../stylesheet/style.css";
 
 const content = document.querySelector(".content");
 
+// Search container
+const searchContainer = document.createElement("div");
+searchContainer.classList.add("search-container");
+
+// Create a input field to get
+const input = document.createElement("input");
+input.type = "search";
+input.classList.add("search-bar");
+input.placeholder = "City, State or Country";
+searchContainer.append(input);
+
+// Create an error message
+const error = document.createElement("div");
+error.classList.add("error", "hidden");
+error.textContent = "Place Not Found";
+
+// Create a loading message
+const loading = document.createElement("div");
+loading.classList.add("loading", "hidden");
+loading.textContent = "loading";
+
+// Search Button
+const button = document.createElement("button");
+button.classList.add("search-button");
+button.textContent = "S";
+searchContainer.append(button, loading, error);
+
 // Create current title and current container and add to content
 const currentContainer = document.createElement("div");
 currentContainer.classList.add("current-container");
 const currentTitle = document.createElement("div");
 currentTitle.classList.add("current-title");
 currentTitle.textContent = "Current Weather";
-content.append(currentTitle, currentContainer);
 
 // Create hourly container and hourly title and add to content
 const hourlyContainer = document.createElement("div");
@@ -17,23 +43,25 @@ hourlyContainer.classList.add("hourly-container");
 const hourlyTitle = document.createElement("div");
 hourlyTitle.classList.add("hourly-title");
 hourlyTitle.textContent = "Hourly Weather";
-content.append(hourlyTitle, hourlyContainer);
 
-const apiKey = key;
-const city = "Mawsynram";
-const urlCurrent = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=2`;
+// Append all data to content
+content.append(
+  searchContainer,
+  currentTitle,
+  currentContainer,
+  hourlyTitle,
+  hourlyContainer
+);
 
-async function getCurrentWeather(src) {
-  const response = await fetch(src, { mode: "cors" });
-  if (response.ok) {
-    const json = await response.json();
-    return json;
-  }
-  throw new Error("Invalid Request");
+function getURL(city) {
+  const apiKey = key;
+  return `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=2`;
 }
+const city = "Salem";
+const urlCurrent = getURL(city);
 
 // Returns an array of elements which represent current weather and location info
-function getWeatherItems(obj) {
+function getCurrentItems(obj) {
   const weatherItems = [];
   Object.keys(obj).forEach((objKey) => {
     const div = document.createElement("div");
@@ -48,7 +76,7 @@ function getWeatherItems(obj) {
 }
 
 // Returns an obj containing current weather info filtered from the api response
-function getFilteredData(data) {
+function getCurrentData(data) {
   const {
     cloud,
     temp_c: tempC,
@@ -153,27 +181,63 @@ function getHourlyData(data) {
   return filteredData;
 }
 
-function displayCurrentWeather(src) {
-  const myWeather = getCurrentWeather(src);
+async function getWeatherData(src) {
+  try {
+    const response = await fetch(src, { mode: "cors" });
+    if (!response.ok) throw new Error("Invalid Request");
+    const json = await response.json();
+    return json;
+  } catch (err) {
+    error.classList.remove("hidden");
+    loading.classList.add("hidden");
+    console.log(err);
+  }
+  return undefined;
+}
 
+function displayWeather(src) {
+  loading.classList.remove("hidden");
+  error.classList.add("hidden");
+  // Response from API
+  const myWeather = getWeatherData(src);
+
+  // Get current data and display
   myWeather
     .then((data) => {
-      console.log(data);
-      const filteredData = getFilteredData(data);
-      getWeatherItems(filteredData).forEach((item) =>
+      if (!data) return;
+      const filteredData = getCurrentData(data);
+      currentContainer.textContent = "";
+      getCurrentItems(filteredData).forEach((item) =>
         currentContainer.append(item)
       );
     })
     .catch((err) => console.log(err));
 
-  myWeather.then((data) => {
-    const todaysData = getHourlyData(data);
-    getHourlyItems(todaysData).forEach((item) => {
-      hourlyContainer.append(item);
-    });
-  });
+  // Get hourly data and display
+  myWeather
+    .then((data) => {
+      if (!data) return;
+      const todaysData = getHourlyData(data);
+      hourlyContainer.textContent = "";
+      loading.classList.add("hidden");
+
+      getHourlyItems(todaysData).forEach((item) => {
+        hourlyContainer.append(item);
+      });
+    })
+    .catch((err) => console.log(err));
 }
 
-displayCurrentWeather(urlCurrent);
+displayWeather(urlCurrent);
 
-// We need hourly time, temperature and condition
+// Add event listener to search bar and button
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && input.value) {
+    displayWeather(getURL(input.value));
+  }
+});
+button.addEventListener("click", () => {
+  if (input.value) {
+    displayWeather(getURL(input.value));
+  }
+});
