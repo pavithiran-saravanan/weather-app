@@ -1,6 +1,28 @@
 *{
     margin: 0px;
     padding: 0px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.content{
+    padding: 30px;
+}
+
+.current-title, .hourly-title{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.current-container, .hourly-container{
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.current-container > div, .hourly-container > div{
+    background-color: rgb(223, 223, 223);
+    padding: 10px 20px;
+    text-align: center;
+}
