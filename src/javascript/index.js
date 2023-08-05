@@ -164,8 +164,8 @@ function getHourlyData(data) {
     .filter((hourData) => {
       const currDate = hourData.time.split(" ")[0];
       const currTime = hourData.time.split(" ")[1].split(":")[0];
-      if (date === currDate && currTime > currentHour) return true;
-      if (date !== currDate && currTime <= currentHour) return true;
+      if (date === currDate && +currTime > +currentHour) return true;
+      if (date !== currDate && +currTime <= +currentHour) return true;
       return false;
     })
     .map((hourData) => {
