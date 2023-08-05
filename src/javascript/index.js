@@ -139,9 +139,9 @@ function getHourlyItems(data) {
     temp.textContent = hourData.tempC;
     temp.classList.add("hourly-temp");
 
-    const condition = document.createElement("div");
-    condition.textContent = hourData.condition;
-    condition.classList.add("hourly-condition");
+    const condition = document.createElement("img");
+    condition.classList.add("hourly-weather-icon");
+    condition.src = hourData.weatherIcon;
 
     const div = document.createElement("div");
     div.append(time, temp, condition);
@@ -184,7 +184,7 @@ function getHourlyData(data) {
       return {
         tempC,
         tempF,
-        condition: condition.text,
+        weatherIcon: condition.icon,
         time: formatHours(hours),
       };
     });
@@ -215,8 +215,8 @@ function displayWeather(src) {
   myWeather
     .then((data) => {
       if (!data) return;
-      currentWeatherIcon.src = data.current.condition.icon;
       const filteredData = getCurrentData(data);
+      currentWeatherIcon.src = filteredData.weatherIcon;
       currentContainer.textContent = "";
       getCurrentItems(filteredData).forEach((item) =>
         currentContainer.append(item)
