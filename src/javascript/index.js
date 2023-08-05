@@ -37,6 +37,11 @@ const currentTitle = document.createElement("div");
 currentTitle.classList.add("current-title");
 currentTitle.textContent = "Current Weather";
 
+// Create an icon container
+const currentWeatherIcon = document.createElement("img");
+currentWeatherIcon.classList.add("current-weather-icon");
+currentTitle.append(currentWeatherIcon);
+
 // Create hourly container and hourly title and add to content
 const hourlyContainer = document.createElement("div");
 hourlyContainer.classList.add("hourly-container");
@@ -64,6 +69,7 @@ const urlCurrent = getURL(city);
 function getCurrentItems(obj) {
   const weatherItems = [];
   Object.keys(obj).forEach((objKey) => {
+    if (objKey === "weatherIcon") return;
     const div = document.createElement("div");
     const title = document.createElement("h4");
     title.textContent = objKey;
@@ -94,6 +100,8 @@ function getCurrentData(data) {
     vis_miles: visMiles,
   } = data.current;
   const { name, region, country, localtime } = data.location;
+  const { daily_chance_of_rain: dailyChanceOfRain } =
+    data.forecast.forecastday[0].day;
   return {
     cloud,
     isDay,
@@ -109,6 +117,8 @@ function getCurrentData(data) {
     uv,
     visKm,
     visMiles,
+    dailyChanceOfRain,
+    weatherIcon: condition.icon,
 
     name,
     region,
@@ -205,6 +215,7 @@ function displayWeather(src) {
   myWeather
     .then((data) => {
       if (!data) return;
+      currentWeatherIcon.src = data.current.condition.icon;
       const filteredData = getCurrentData(data);
       currentContainer.textContent = "";
       getCurrentItems(filteredData).forEach((item) =>
@@ -217,6 +228,7 @@ function displayWeather(src) {
   myWeather
     .then((data) => {
       if (!data) return;
+      console.log(data);
       const todaysData = getHourlyData(data);
       hourlyContainer.textContent = "";
       loading.classList.add("hidden");
