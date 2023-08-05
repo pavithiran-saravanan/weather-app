@@ -69,7 +69,7 @@ function getURL(city) {
   const apiKey = key;
   return `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=2`;
 }
-const city = "Salem";
+const city = "New York";
 const urlCurrent = getURL(city);
 
 // Returns an array of elements which represent current weather and location info
@@ -250,6 +250,18 @@ function displayWeather(src) {
 }
 
 displayWeather(urlCurrent);
+
+// Get users location
+const locationSuccess = (position) => {
+  const q = `${position.coords.latitude},${position.coords.longitude}`;
+  displayWeather(getURL(q));
+};
+const locationError = (err) => {
+  console.log(err);
+};
+navigator.geolocation.getCurrentPosition(locationSuccess, locationError, {
+  enableHighAccuracy: true,
+});
 
 // Add event listener to search bar and button
 input.addEventListener("keydown", (e) => {
