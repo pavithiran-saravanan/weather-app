@@ -2,6 +2,7 @@ import key from "../../key";
 import "../stylesheet/style.css";
 import arrowIcon from "../images/arrow.svg";
 import searchIcon from "../images/search.svg";
+import loadingGif from "../images/loading.gif";
 
 const content = document.querySelector(".content");
 
@@ -14,17 +15,20 @@ const input = document.createElement("input");
 input.type = "search";
 input.classList.add("search-bar");
 input.placeholder = "City, State or Country";
-searchContainer.append(input);
 
 // Create an error message
 const error = document.createElement("div");
 error.classList.add("error", "hidden");
 error.textContent = "Place Not Found";
 
-// Create a loading message
+// Add a loading Gif
 const loading = document.createElement("div");
+const loadingIcon = document.createElement("img");
+loadingIcon.classList.add("loading-gif");
+loadingIcon.src = loadingGif;
 loading.classList.add("loading", "hidden");
-loading.textContent = "loading";
+loading.append(loadingIcon);
+content.append(loading);
 
 // Search Button
 const button = document.createElement("button");
@@ -33,7 +37,7 @@ const search = document.createElement("img");
 search.classList.add("search-icon");
 search.src = searchIcon;
 button.append(search);
-searchContainer.append(button, loading, error);
+searchContainer.append(input, button, error);
 
 // Create current title and current container and add to content
 const currentContainer = document.createElement("div");
@@ -219,7 +223,11 @@ async function getWeatherData(src) {
 }
 
 function displayWeather(src) {
+  // Start of loading
   loading.classList.remove("hidden");
+  currentContainer.classList.add("inactive");
+  hourlyContainer.classList.add("inactive");
+
   error.classList.add("hidden");
   // Response from API
   const myWeather = getWeatherData(src);
@@ -245,10 +253,14 @@ function displayWeather(src) {
       console.log(data);
       const todaysData = getHourlyData(data);
       hourlyContainer.textContent = "";
-      loading.classList.add("hidden");
       getHourlyItems(todaysData).forEach((item) => {
         hourlyContainer.append(item);
       });
+
+      // End of loading
+      loading.classList.add("hidden");
+      currentContainer.classList.remove("inactive");
+      hourlyContainer.classList.remove("inactive");
     })
     .catch((err) => console.log(err));
 }

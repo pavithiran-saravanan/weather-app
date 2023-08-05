@@ -46,6 +46,11 @@ body{
     place-content: center;
     place-items: center;
 }
+.inactive{
+    opacity: 50%;
+    pointer-events: none;
+    user-select: none;
+}
 .current-container>div{
     gap: 3px;
 }
@@ -66,6 +71,11 @@ body{
     justify-content: center;
     align-items: center;
     gap: 10px;
+    position: relative;
+}
+
+.search-bar {
+    position: relative;
 }
 
 .search-bar, .search-bar:focus{
@@ -103,10 +113,30 @@ body{
 }
 
 .search-button:hover{
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
     background-color: rgb(231, 130, 35);
 }
 
 .search-icon{
     width: 20px;
+}
+
+.loading-gif{
+    position: fixed;
+    width: 80px;
+    left: 50%;
+    top: 40%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.error{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 55px;
+    font-size: 14px;
+    font-style: italic;
+    z-index: 100;
+    color: rgb(231, 130, 35);
 }
