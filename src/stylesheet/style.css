@@ -4,6 +4,17 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+/* Reset Input and Search field styling */
+input {
+    all: unset;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
+
 body{
     background-color: #222;
     color: white;
@@ -46,9 +57,6 @@ body{
     font-size: 20px;
     font-weight: 600;
 }
-.hourly-temp{
-}
-
 .hidden{
     display: none;
 }
@@ -74,9 +82,13 @@ body{
     color: white;
 }
 
+.search-bar:focus{
+    border-color: rgb(248, 143, 45);
+}
+
 .search-button{
     height: 40px;
-    width: 40px;
+    min-width: 40px;
     border: 0px;
     outline: 0px;
     border-radius: 50px;
@@ -88,4 +100,13 @@ body{
 
 .wind-direction-icon{
     width: 50px;
+}
+
+.search-button:hover{
+    transform: scale(1.05);
+    background-color: rgb(231, 130, 35);
+}
+
+.search-icon{
+    width: 20px;
 }

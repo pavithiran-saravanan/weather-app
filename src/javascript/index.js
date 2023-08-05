@@ -1,6 +1,7 @@
 import key from "../../key";
 import "../stylesheet/style.css";
 import arrowIcon from "../images/arrow.svg";
+import searchIcon from "../images/search.svg";
 
 const content = document.querySelector(".content");
 
@@ -28,7 +29,10 @@ loading.textContent = "loading";
 // Search Button
 const button = document.createElement("button");
 button.classList.add("search-button");
-button.textContent = "O";
+const search = document.createElement("img");
+search.classList.add("search-icon");
+search.src = searchIcon;
+button.append(search);
 searchContainer.append(button, loading, error);
 
 // Create current title and current container and add to content
