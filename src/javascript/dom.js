@@ -52,7 +52,12 @@ export default function populateDom() {
   locationButton.append(locationIcon);
 
   // searchbar's children
-  const searchInput = comp("input", "search-input", { type: "search" });
+  const searchInput = comp(
+    "input",
+    "search-input",
+    { type: "search" },
+    { placeholder: "Search Location" }
+  );
   const searchIcon = comp("img", "search-icon", { src: iconSearch });
   const error = comp("div", "error");
   searchBar.append(searchIcon, searchInput, error);
