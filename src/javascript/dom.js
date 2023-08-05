@@ -1,9 +1,35 @@
 import comp from "./comp";
 import iconLocation from "../images/location.svg";
 import iconSearch from "../images/search.svg";
-import iconTheme from "../images/theme.svg";
+import iconThemeDark from "../images/theme-dark-2.svg";
+import iconThemeLight from "../images/theme.svg";
 import iconLeftArrow from "../images/left-arrow.svg";
 import iconRightArrow from "../images/right-arrow.svg";
+
+function getThemeToggle() {
+  const themeToggle = comp("div", "theme-toggle dark");
+
+  // themeToggle's children
+  const themeToggleCircle = comp("div", "theme-toggle-circle");
+  const themeIcon = comp("img", "theme-icon", { src: iconThemeDark });
+  themeToggleCircle.append(themeIcon);
+  const themeToggleTrack = comp("div", "theme-toggle-track");
+  themeToggle.append(themeToggleCircle, themeToggleTrack);
+
+  // Add event listener to themeToggle
+  themeToggle.addEventListener("click", () => {
+    if (themeToggle.classList.contains("dark")) {
+      themeToggle.classList.remove("dark");
+      themeToggle.classList.add("light");
+      themeIcon.src = iconThemeLight;
+    } else {
+      themeToggle.classList.remove("light");
+      themeToggle.classList.add("dark");
+      themeIcon.src = iconThemeDark;
+    }
+  });
+  return themeToggle;
+}
 
 // Add basic dom structure
 export default function populateDom() {
@@ -20,8 +46,7 @@ export default function populateDom() {
   // header's children
   const locationButton = comp("button", "location-btn");
   const searchBar = comp("div", "search-bar");
-  const themeToggle = comp("div", "theme-toggle");
-  header.append(locationButton, searchBar, themeToggle);
+  header.append(locationButton, searchBar, getThemeToggle());
 
   const locationIcon = comp("img", "location-icon", { src: iconLocation });
   locationButton.append(locationIcon);
@@ -31,13 +56,6 @@ export default function populateDom() {
   const searchIcon = comp("img", "search-icon", { src: iconSearch });
   const error = comp("div", "error");
   searchBar.append(searchIcon, searchInput, error);
-
-  // themeToggle's children
-  const themeToggleCircle = comp("div", "theme-toggle-circle");
-  const themeIcon = comp("img", "theme-icon", { src: iconTheme });
-  themeToggleCircle.append(themeIcon);
-  const themeToggleTrack = comp("div", "theme-toggle-track");
-  themeToggle.append(themeToggleCircle, themeToggleTrack);
 
   // unitsSection children
   const celsiusButton = comp("button", "unit-btn celsius-btn active");

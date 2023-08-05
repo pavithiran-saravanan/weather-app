@@ -3,7 +3,6 @@ import "../stylesheet/style.css";
 import arrowIcon from "../images/arrow.svg";
 import searchIcon from "../images/search.svg";
 import loadingGif from "../images/loading.gif";
-import comp from "./comp";
 import populateDom from "./dom";
 
 const content = document.querySelector(".content");
@@ -278,7 +277,7 @@ const locationSuccess = (position) => {
   const q = `${position.coords.latitude},${position.coords.longitude}`;
   displayWeather(getURL(q));
 };
-const locationError = (err) => {
+const locationError = () => {
   // console.log(err);
 };
 navigator.geolocation.getCurrentPosition(locationSuccess, locationError, {

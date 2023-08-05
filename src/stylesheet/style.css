@@ -4,6 +4,7 @@
     margin: 0px;
     padding: 0px;
     font-family: 'Poppins', sans-serif;
+   
 }
 
 /* Reset Input and Search field styling */
@@ -20,6 +21,9 @@ input[type="search"]::-webkit-search-results-decoration {
 body{
     background-color: #222;
     color: white;
+    --color-primary: #26629A;
+    --color-dark-1: #181B21;
+    --color-dark-2: #222935;
 }
 
 .content{
@@ -141,4 +145,49 @@ body{
     font-style: italic;
     z-index: 100;
     color: rgb(231, 130, 35);
+}
+
+
+.content{
+    background-color: var(--color-dark-1);
+}
+
+/* Theme Toggle */
+.theme-toggle{
+    position: relative;
+    display: inline-block;
+}
+
+.theme-toggle-circle{
+    background-color: var(--color-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    display: grid;
+    place-content: center;
+    transition: all .2s ease-in-out;
+    position: absolute;
+    left: 0px;
+    top: -5px;
+}
+
+.dark > * > .theme-icon{
+    padding-left: 2px;
+}
+
+.theme-toggle.dark .theme-toggle-circle{
+    transform: rotate(0deg);
+    left: 40%;
+}
+
+.theme-toggle.light .theme-toggle-circle {
+    transform: rotate(-180deg);
+    left: 0px;
+}
+
+.theme-toggle-track{
+    background-color: var(--color-dark-2);
+    min-height: 30px;
+    width: 65px;
+    border-radius: 100px;
 }
