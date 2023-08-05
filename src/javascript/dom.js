@@ -1,0 +1,75 @@
+import comp from "./comp";
+import iconLocation from "../images/location.svg";
+import iconSearch from "../images/search.svg";
+import iconTheme from "../images/theme.svg";
+import iconLeftArrow from "../images/left-arrow.svg";
+import iconRightArrow from "../images/right-arrow.svg";
+
+// Add basic dom structure
+export default function populateDom() {
+  const content = document.querySelector(".content");
+  console.log("dom");
+
+  // content's children
+  const header = comp("header", "header");
+  const unitsSection = comp("div", "units-section");
+  const currentContainer = comp("div", "currentContainer");
+  const hourlyContainer = comp("div", "hourly-container");
+  content.append(header, unitsSection, currentContainer, hourlyContainer);
+
+  // header's children
+  const locationButton = comp("button", "location-btn");
+  const searchBar = comp("div", "search-bar");
+  const themeToggle = comp("div", "theme-toggle");
+  header.append(locationButton, searchBar, themeToggle);
+
+  const locationIcon = comp("img", "location-icon", { src: iconLocation });
+  locationButton.append(locationIcon);
+
+  // searchbar's children
+  const searchInput = comp("input", "search-input", { type: "search" });
+  const searchIcon = comp("img", "search-icon", { src: iconSearch });
+  const error = comp("div", "error");
+  searchBar.append(searchIcon, searchInput, error);
+
+  // themeToggle's children
+  const themeToggleCircle = comp("div", "theme-toggle-circle");
+  const themeIcon = comp("img", "theme-icon", { src: iconTheme });
+  themeToggleCircle.append(themeIcon);
+  const themeToggleTrack = comp("div", "theme-toggle-track");
+  themeToggle.append(themeToggleCircle, themeToggleTrack);
+
+  // unitsSection children
+  const celsiusButton = comp("button", "unit-btn celsius-btn active");
+  celsiusButton.textContent = "Celsius";
+  const fahrenheitButton = comp("button", "unit-btn fahrenheit-btn");
+  fahrenheitButton.textContent = "Fahrenheit";
+
+  unitsSection.append(celsiusButton, fahrenheitButton);
+
+  // Current Container's children
+  const currentLeft = comp("div", "current-left");
+  const currentCenter = comp("div", "current-center");
+  const currentRight = comp("div", "current-right");
+  currentContainer.append(currentLeft, currentCenter, currentRight);
+
+  // current left, current center and current right children will be generated and added once weather data is fetched
+
+  // hourlyContainer
+  // hourlyContainerMain => Child elements will be dynamically generated and added
+  const hourlyContainerMain = comp("div", "hourly-container-main");
+  const hourlyContainerCarousal = comp("div", "hourly-container-carousal");
+  hourlyContainer.append(hourlyContainerMain, hourlyContainerCarousal);
+
+  // hourlyContainerCarousal
+  const carousalMain = comp("div", "carousal-main");
+  const leftArrow = comp("img", "left-arrow", { src: iconLeftArrow });
+  const rightArrow = comp("img", "right-arrow", { src: iconRightArrow });
+  const dots = comp("div", "dots");
+  const dot1 = comp("div", "dot dot-1");
+  const dot2 = comp("div", "dot dot-2");
+  const dot3 = comp("div", "dot dot-3");
+  dots.append(dot1, dot2, dot3);
+  carousalMain.append(leftArrow, dots, rightArrow);
+  hourlyContainerCarousal.append(carousalMain);
+}

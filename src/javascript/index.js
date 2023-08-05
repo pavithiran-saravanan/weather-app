@@ -3,6 +3,8 @@ import "../stylesheet/style.css";
 import arrowIcon from "../images/arrow.svg";
 import searchIcon from "../images/search.svg";
 import loadingGif from "../images/loading.gif";
+import comp from "./comp";
+import populateDom from "./dom";
 
 const content = document.querySelector(".content");
 
@@ -250,12 +252,16 @@ function displayWeather(src) {
   myWeather
     .then((data) => {
       if (!data) return;
-      console.log(data);
+      // console.log(data);
       const todaysData = getHourlyData(data);
       hourlyContainer.textContent = "";
-      getHourlyItems(todaysData).forEach((item) => {
-        hourlyContainer.append(item);
-      });
+      const hourlyItems = getHourlyItems(todaysData);
+
+      const set1 = hourlyItems.slice(0, 8);
+      const set2 = hourlyItems.slice(8, 16);
+      const set3 = hourlyItems.slice(15, 34);
+      // console.log(set1, set2, set3);
+      hourlyContainer.append(...set1, ...set2, ...set3);
 
       // End of loading
       loading.classList.add("hidden");
@@ -273,7 +279,7 @@ const locationSuccess = (position) => {
   displayWeather(getURL(q));
 };
 const locationError = (err) => {
-  console.log(err);
+  // console.log(err);
 };
 navigator.geolocation.getCurrentPosition(locationSuccess, locationError, {
   enableHighAccuracy: true,
@@ -290,3 +296,5 @@ button.addEventListener("click", () => {
     displayWeather(getURL(input.value));
   }
 });
+
+populateDom();
