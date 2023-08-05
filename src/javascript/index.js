@@ -27,7 +27,7 @@ loading.textContent = "loading";
 // Search Button
 const button = document.createElement("button");
 button.classList.add("search-button");
-button.textContent = "S";
+button.textContent = "O";
 searchContainer.append(button, loading, error);
 
 // Create current title and current container and add to content
@@ -155,8 +155,8 @@ function formatHours(time) {
   let res = "";
   if (time === "12") res = `12 PM`;
   else if (time === "00") res = `12 AM`;
-  else if (time > 12) res = `${time % 12} PM`;
-  else res = `${time} AM`;
+  else if (time > 12) res = `${+time % 12} PM`;
+  else res = `${+time} AM`;
   return res;
 }
 

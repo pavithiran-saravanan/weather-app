@@ -4,6 +4,11 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+body{
+    background-color: rgb(46, 46, 46);
+    color: white;
+}
+
 .content{
     padding: 30px;
 }
@@ -22,9 +27,26 @@
 }
 
 .current-container > div, .hourly-container > div{
-    background-color: rgb(223, 223, 223);
-    padding: 10px 20px;
+    background-color: rgb(56, 56, 56);
+    padding: 20px 30px;
     text-align: center;
+    border-radius: 6px;
+    display: grid;
+    place-content: center;
+    place-items: center;
+}
+.current-container>div{
+    gap: 3px;
+}
+.hourly-container>div{
+    /* padding-bottom: 10px;     */
+    gap: 10px;
+}
+.hourly-time{
+    font-size: 20px;
+    font-weight: 600;
+}
+.hourly-temp{
 }
 
 .hidden{
@@ -40,24 +62,26 @@
 
 .search-bar, .search-bar:focus{
     /* padding: 6px 10px; */
-    height: 35px;
-    padding: 0px 10px;
+    height: 40px;
+    padding: 0px 16px;
     border-radius: 50px;
     outline: 0px;
-    border: 2px solid cornflowerblue;
+    border: 2px solid rgb(218, 123, 34);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     width: 400px;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
 }
 
 .search-button{
-    height: 35px;
-    width: 35px;
+    height: 40px;
+    width: 40px;
     border: 0px;
     outline: 0px;
     border-radius: 50px;
-    background-color: cornflowerblue;
+    background-color: rgb(218, 123, 34);
     color: white;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
 }
