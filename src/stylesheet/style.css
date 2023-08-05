@@ -5,7 +5,7 @@
 }
 
 body{
-    background-color: rgb(46, 46, 46);
+    background-color: #222;
     color: white;
 }
 
@@ -27,7 +27,7 @@ body{
 }
 
 .current-container > div, .hourly-container > div{
-    background-color: rgb(56, 56, 56);
+    background-color: #333;
     padding: 20px 30px;
     text-align: center;
     border-radius: 6px;
@@ -84,4 +84,8 @@ body{
     color: white;
     font-size: 18px;
     font-weight: 600;
+}
+
+.wind-direction-icon{
+    width: 50px;
 }

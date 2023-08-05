@@ -1,5 +1,6 @@
 import key from "../../key";
 import "../stylesheet/style.css";
+import arrowIcon from "../images/arrow.svg";
 
 const content = document.querySelector(".content");
 
@@ -37,10 +38,16 @@ const currentTitle = document.createElement("div");
 currentTitle.classList.add("current-title");
 currentTitle.textContent = "Current Weather";
 
-// Create an icon container
+// Weather icon container
 const currentWeatherIcon = document.createElement("img");
 currentWeatherIcon.classList.add("current-weather-icon");
 currentTitle.append(currentWeatherIcon);
+
+// Wind direction icon container
+const windDirectionIcon = document.createElement("img");
+windDirectionIcon.classList.add("wind-direction-icon");
+windDirectionIcon.src = arrowIcon;
+currentTitle.append(windDirectionIcon);
 
 // Create hourly container and hourly title and add to content
 const hourlyContainer = document.createElement("div");
@@ -91,6 +98,7 @@ function getCurrentData(data) {
     condition,
     wind_mph: windMph,
     wind_kph: windKph,
+    wind_degree: windDegree,
     wind_dir: windDir,
     humidity,
     feelslike_c: feelsLikeC,
@@ -113,6 +121,7 @@ function getCurrentData(data) {
     humidity,
     windMph,
     windKph,
+    windDegree,
     windDir,
     uv,
     visKm,
@@ -217,6 +226,7 @@ function displayWeather(src) {
       if (!data) return;
       const filteredData = getCurrentData(data);
       currentWeatherIcon.src = filteredData.weatherIcon;
+      windDirectionIcon.style.rotate = `${filteredData.windDegree}deg`;
       currentContainer.textContent = "";
       getCurrentItems(filteredData).forEach((item) =>
         currentContainer.append(item)
@@ -232,7 +242,6 @@ function displayWeather(src) {
       const todaysData = getHourlyData(data);
       hourlyContainer.textContent = "";
       loading.classList.add("hidden");
-
       getHourlyItems(todaysData).forEach((item) => {
         hourlyContainer.append(item);
       });
