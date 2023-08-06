@@ -1,10 +1,10 @@
-import key from "../../key";
 import "../stylesheet/style.css";
 import arrowIcon from "../images/arrow.svg";
 import searchIcon from "../images/search.svg";
 import loadingGif from "../images/loading.gif";
 import populateDom from "./dom";
 import displayWeather from "./displayWeather";
+import getUrl from "./getUrl";
 
 const content = document.querySelector(".content");
 
@@ -75,19 +75,12 @@ content.append(
   hourlyContainer
 );
 
-function getURL(city) {
-  const apiKey = key;
-  return `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=2`;
-}
-const city = "New York";
-const urlCurrent = getURL(city);
-
-displayWeather(urlCurrent);
+displayWeather(getUrl());
 
 // Get users location
 const locationSuccess = (position) => {
   const q = `${position.coords.latitude},${position.coords.longitude}`;
-  displayWeather(getURL(q));
+  displayWeather(getUrl(q));
 };
 const locationError = () => {
   // console.log(err);
@@ -99,12 +92,12 @@ navigator.geolocation.getCurrentPosition(locationSuccess, locationError, {
 // Add event listener to search bar and button
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && input.value) {
-    displayWeather(getURL(input.value));
+    displayWeather(getUrl(input.value));
   }
 });
 button.addEventListener("click", () => {
   if (input.value) {
-    displayWeather(getURL(input.value));
+    displayWeather(getUrl(input.value));
   }
 });
 

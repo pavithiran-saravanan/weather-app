@@ -5,6 +5,8 @@ import iconThemeDark from "../images/theme-dark-2.svg";
 import iconThemeLight from "../images/theme.svg";
 import iconLeftArrow from "../images/left-arrow.svg";
 import iconRightArrow from "../images/right-arrow.svg";
+import getUrl from "./getUrl";
+import displayWeather from "./displayWeather";
 
 function getSearchBar() {
   const searchBar = comp("div", "search-bar");
@@ -19,6 +21,13 @@ function getSearchBar() {
   const error = comp("div", "error hidden");
   error.textContent = "Place Not Found";
   searchBar.append(searchIcon, searchInput, error);
+
+  // Handle search
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && searchInput.value) {
+      displayWeather(getUrl(searchInput.value));
+    }
+  });
 
   return searchBar;
 }
