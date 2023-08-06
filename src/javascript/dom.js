@@ -34,12 +34,14 @@ function getThemeToggle() {
 function getUnitsContainer() {
   const unitsContainer = comp("div", "units-container");
 
+  // Construct Component
   const celsiusButton = comp("button", "unit-btn celsius-btn active");
   celsiusButton.textContent = "Celsius";
   const fahrenheitButton = comp("button", "unit-btn fahrenheit-btn");
   fahrenheitButton.textContent = "Fahrenheit";
   unitsContainer.append(celsiusButton, fahrenheitButton);
 
+  // Handle Click Events
   unitsContainer.addEventListener("click", (e) => {
     if (e.target === celsiusButton) {
       celsiusButton.classList.add("active");
@@ -50,6 +52,44 @@ function getUnitsContainer() {
     }
   });
   return unitsContainer;
+}
+
+function getCarousalMain() {
+  const carousalMain = comp("div", "carousal-main");
+
+  // Construct component
+  const leftArrow = comp("img", "left-arrow", { src: iconLeftArrow });
+  const rightArrow = comp("img", "right-arrow", { src: iconRightArrow });
+  const dots = comp("div", "dots");
+  const dot1 = comp("div", "dot dot-1 active");
+  const dot2 = comp("div", "dot dot-2");
+  const dot3 = comp("div", "dot dot-3");
+  dots.append(dot1, dot2, dot3);
+  carousalMain.append(leftArrow, dots, rightArrow);
+
+  // Handle Click Events
+  carousalMain.addEventListener("click", (e) => {
+    const dotsArr = [dot1, dot2, dot3];
+    const curr = dots.querySelector(".active");
+    const index = dotsArr.indexOf(curr);
+    const next = index + 1 > 2 ? dotsArr[0] : dotsArr[index + 1];
+    const prev = index - 1 < 0 ? dotsArr[2] : dotsArr[index - 1];
+
+    if (e.target === dot1 || e.target === dot2 || e.target === dot3) {
+      curr.classList.remove("active");
+      e.target.classList.add("active");
+    }
+    if (e.target === rightArrow) {
+      curr.classList.remove("active");
+      next.classList.add("active");
+    }
+    if (e.target === leftArrow) {
+      curr.classList.remove("active");
+      prev.classList.add("active");
+    }
+  });
+
+  return carousalMain;
 }
 
 // Add basic dom structure
@@ -106,14 +146,5 @@ export default function populateDom() {
   hourlyContainer.append(hourlyContainerMain, hourlyContainerCarousal);
 
   // hourlyContainerCarousal
-  const carousalMain = comp("div", "carousal-main");
-  const leftArrow = comp("img", "left-arrow", { src: iconLeftArrow });
-  const rightArrow = comp("img", "right-arrow", { src: iconRightArrow });
-  const dots = comp("div", "dots");
-  const dot1 = comp("div", "dot dot-1 active");
-  const dot2 = comp("div", "dot dot-2");
-  const dot3 = comp("div", "dot dot-3");
-  dots.append(dot1, dot2, dot3);
-  carousalMain.append(leftArrow, dots, rightArrow);
-  hourlyContainerCarousal.append(carousalMain);
+  hourlyContainerCarousal.append(getCarousalMain());
 }
