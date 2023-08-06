@@ -25,6 +25,7 @@ body{
     --color-dark-1: #181B21;
     --color-dark-2: #222935;
     --color-text: #fff;
+    --color-dark-3: #3E485E;
 }
 
 .content{
@@ -44,7 +45,7 @@ body{
     margin-bottom: 30px;
 }
 
-.current-container > div, .hourly-container > div{
+/* .current-container > div, .hourly-container > div{
     background-color: #333;
     padding: 20px 30px;
     text-align: center;
@@ -52,7 +53,7 @@ body{
     display: grid;
     place-content: center;
     place-items: center;
-}
+} */
 .inactive{
     opacity: 50%;
     pointer-events: none;
@@ -296,4 +297,153 @@ body{
 
 .unit-btn.active{
     background-color: var(--color-primary);
+}
+
+/* Current Section */
+.current-container{
+    display: flex;
+    width: 90%;
+    margin: auto;
+    gap: 5px;
+    margin-bottom: 30px;
+}
+
+.current-left, .current-right{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+}
+
+/* Current card */
+.current-card{
+    display: grid;
+    gap: 5px;
+}
+
+.current-card-icon{
+
+}
+
+.current-card-value{
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.current-card-label{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.current-center{
+    display: grid;
+    text-align: center;
+    gap: 10px;
+}
+
+.current-center-main{
+    display: grid;
+    gap: 5px;
+}
+
+.current-center-icon{
+
+}
+
+.current-center-body{
+    font-weight: 600;
+    display: grid;
+    gap: 5px;
+}
+
+.current-temp{
+    font-size: 65px;
+}
+
+.current-condition{
+    font-size: 28px;
+}
+
+.current-location{
+    font-size: 14px;
+    color: var(--color-primary);
+}
+
+.current-center-datetime{
+    color: var(--color-dark-3);
+    font-size: 13px;
+}
+
+
+
+/* Hourly Container */
+.hourly-container{
+    width: 80%;
+    margin: auto;
+}
+
+.hourly-container-main{
+    width: 100%;
+}
+
+.set{
+    display: flex;
+    gap: 10px;
+    display: none;
+}
+
+.set.active{
+    display: block;
+}
+
+.hourly-card{
+    display: grid;
+    gap: 5px;
+}
+
+.hourly-card-time{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hourly-card-temp{
+    font-size: 22;
+    font-weight: 700;
+}
+
+.hourly-card-icon{
+
+}
+
+
+
+/* Hourly Carousal */
+.hourly-container-carousal{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousal-main{
+    display: flex;
+    gap: 9px;
+}
+
+.dots{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.dot{
+    width: 4px;
+    height: 4px;
+    border: 2px solid var(--color-text);
+    border-radius: 100px;
+}
+
+.dot.active{
+    background-color: var(--color-text);
 }

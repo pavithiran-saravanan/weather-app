@@ -99,6 +99,10 @@ export default function populateDom() {
   // hourlyContainerMain => Child elements will be dynamically generated and added
   const hourlyContainerMain = comp("div", "hourly-container-main");
   const hourlyContainerCarousal = comp("div", "hourly-container-carousal");
+  const set1 = comp("div", "set set-1 active");
+  const set2 = comp("div", "set set-2");
+  const set3 = comp("div", "set set-3");
+  hourlyContainerMain.append(set1, set2, set3);
   hourlyContainer.append(hourlyContainerMain, hourlyContainerCarousal);
 
   // hourlyContainerCarousal
@@ -106,7 +110,7 @@ export default function populateDom() {
   const leftArrow = comp("img", "left-arrow", { src: iconLeftArrow });
   const rightArrow = comp("img", "right-arrow", { src: iconRightArrow });
   const dots = comp("div", "dots");
-  const dot1 = comp("div", "dot dot-1");
+  const dot1 = comp("div", "dot dot-1 active");
   const dot2 = comp("div", "dot dot-2");
   const dot3 = comp("div", "dot dot-3");
   dots.append(dot1, dot2, dot3);
