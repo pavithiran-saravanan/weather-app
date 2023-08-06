@@ -8,6 +8,7 @@ import iconHumidity from "../images/humidity.svg";
 import iconChanceOfRain from "../images/chance-of-rain.svg";
 import iconWindSpeed from "../images/wind-speed.svg";
 
+// Get current weather card
 function getCurrentCard(label, value, icon) {
   const currentCard = comp("div", "current-card");
 
@@ -22,6 +23,7 @@ function getCurrentCard(label, value, icon) {
   return currentCard;
 }
 
+// Get current weather main
 function getCurrentCenterMain(obj) {
   const main = comp("div", "current-center-main");
 
@@ -40,6 +42,7 @@ function getCurrentCenterMain(obj) {
   currentCondition.textContent = obj.condition;
   const currentLocation = comp("div", "current-location");
   currentLocation.textContent = `${obj.name}, ${obj.country}`;
+  console.log(obj);
   body.append(currentTemp, currentCondition, currentLocation);
 
   main.append(icon, body);
@@ -55,11 +58,15 @@ export default function getCurrentItems(obj) {
     .classList.contains("active");
 
   // Left items
-  const cloudiness = getCurrentCard("Cloudiness", obj.cloud, iconCloudiness);
+  const cloudiness = getCurrentCard(
+    "Cloudiness",
+    `${obj.cloud} %`,
+    iconCloudiness
+  );
   const uv = getCurrentCard("UV Index", obj.uv, iconUv);
   const visibility = getCurrentCard(
     "Visibility",
-    isC ? obj.visKm : obj.visMiles,
+    isC ? `${obj.visKm} km` : `${obj.visMiles} m`,
     iconVisibility
   );
   const windDirection = getCurrentCard(
@@ -68,23 +75,30 @@ export default function getCurrentItems(obj) {
     iconWindDirection
   );
   currentItemsLeft.push(cloudiness, uv, visibility, windDirection);
+  windDirection.querySelector(
+    "img"
+  ).style.transform = `rotate(${obj.windDegree}deg)`;
 
   // Right items
   const currentItemsRight = [];
   const feelsLike = getCurrentCard(
     "Feels Like",
-    isC ? obj.feelsLikeC : obj.feelsLikeF,
+    isC ? `${obj.feelsLikeC} °C` : `${obj.feelsLikeF} °F`,
     iconFeelsLike
   );
-  const humidity = getCurrentCard("Humidity", obj.humidity, iconHumidity);
+  const humidity = getCurrentCard(
+    "Humidity",
+    `${obj.humidity} %`,
+    iconHumidity
+  );
   const chanceOfRain = getCurrentCard(
     "Chance Of Rain",
-    obj.dailyChanceOfRain,
+    `${obj.dailyChanceOfRain} %`,
     iconChanceOfRain
   );
   const windSpeed = getCurrentCard(
     "Wind Speed",
-    isC ? obj.windKph : obj.windMph,
+    isC ? `${obj.windKph} kph` : `${obj.windMph} mph`,
     iconWindSpeed
   );
   currentItemsRight.push(feelsLike, humidity, chanceOfRain, windSpeed);

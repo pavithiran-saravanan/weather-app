@@ -5,8 +5,6 @@ import displayWeather from "./displayWeather";
 import getUrl from "./getUrl";
 import displayLocalWeather from "./displayLocalWeather";
 
-const content = document.querySelector(".content");
-
 populateDom();
 
 // Add a loading Gif
