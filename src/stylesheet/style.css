@@ -4,6 +4,7 @@
     margin: 0px;
     padding: 0px;
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 
 /* Reset Input and Search field styling */
@@ -26,13 +27,19 @@ body{
     --color-dark-2: #222935;
     --color-text: #fff;
     --color-dark-3: #3E485E;
-    height: 100%;
 }
 
 .content{
-    height: 100dvh;
+    min-height: 100vh;
     background-color: var(--color-dark-1);
-    padding: 30px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 35px;
+
+    /* justify-content: center; */
 }
 
 .inactive {
@@ -62,11 +69,12 @@ body{
 .header{
     display: flex;
     gap: 15px;
-    width: 80%;
-    margin: auto;
+    /* margin: 0 auto; */
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 28px;
+
+    width: clamp(300px, 80%, 1200px);
+    /* margin-bottom: 2rem; */
 }
 
 
@@ -97,6 +105,7 @@ body{
     width: 100%;
     font-size: 15px;
     padding-left: 50px;
+    padding-right: 10px;
 }
 
 ::placeholder {
@@ -178,7 +187,6 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
 }
 
 .units-container{
@@ -205,33 +213,32 @@ body{
 
 /* Current Section */
 .current-container{
-    display: flex;
-    width: 80%;
-    margin: auto;
-    gap: 10px;
-    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    gap: 12px;
+    width: clamp(300px, 100%, 1400px);
 }
 
 .current-left, .current-right{
     flex: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 12px;
 }
 
 /* Current card */
 .current-card{
     display: grid;
-    gap: 5px;
+    gap: 3px;
     background-color: var(--color-dark-2);
     place-content: center;
     place-items: center;
-    padding: 20px 0px;
+    padding: 22px 0px;
     min-width: 150px;
 }
 
 .current-card-icon{
-
+    margin-bottom: 2px;
 }
 
 .current-card-value{
@@ -250,10 +257,10 @@ body{
     display: grid;
     place-items: center;
     place-content: center;
-    /* gap: 20px; */
-    min-width: 300px;
+    min-width: 330px;
     background-color: var(--color-dark-2);
     text-align: center;
+    padding: 20px 0px;
 }
 
 .current-center-main{
@@ -295,10 +302,10 @@ body{
 
 /* Hourly Container */
 .hourly-container{
-    width: 80%;
-    margin: auto;
+    width: clamp(300px, 65%, 1920px);
+    width: clamp(300px, 80%, 1200px);
     display: grid;
-    gap: 12px;
+    gap: 16px;
 }
 
 .hourly-container-main{
@@ -319,17 +326,18 @@ body{
 .hourly-card{
     flex: 1;
     display: grid;
-    gap: 5px;
+    gap: 10px;
     place-content: center;
     place-items: center;
     min-width: 80px;
     position: relative;
 }
+
 .hourly-card:not(:last-child)::after {
     content: '';
     right: 0px;
     position: absolute;
-    height: 65%;
+    height: 60%;
     top: 20px;
     border-right: 2px solid var(--color-dark-2);
 }
@@ -350,7 +358,6 @@ body{
 }
 
 
-
 /* Hourly Carousal */
 .hourly-container-carousal{
     width: 100%;
@@ -361,7 +368,7 @@ body{
 
 .carousal-main{
     display: flex;
-    gap: 9px;
+    gap: 12px;
     user-select: none;
 }
 
@@ -373,9 +380,9 @@ body{
 }
 
 .dot{
-    width: 4px;
-    height: 4px;
-    border: 2px solid var(--color-text);
+    width: 8px;
+    height: 8px;
+    border: 2px solid white;
     border-radius: 100px;
 }
 
