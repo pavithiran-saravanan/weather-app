@@ -1,4 +1,6 @@
+import dataCache from "./cache";
 import comp from "./comp";
+import { displayCurrentWeather, displayHourlyWeather } from "./displayWeather";
 
 export default function getUnitsContainer() {
   const unitsContainer = comp("div", "units-container");
@@ -18,6 +20,12 @@ export default function getUnitsContainer() {
     } else if (e.target === fahrenheitButton) {
       fahrenheitButton.classList.add("active");
       celsiusButton.classList.remove("active");
+    }
+    // Re-render current weather info and hourly weather info
+    const data = dataCache();
+    if (data) {
+      displayCurrentWeather(data);
+      displayHourlyWeather(data);
     }
   });
   return unitsContainer;

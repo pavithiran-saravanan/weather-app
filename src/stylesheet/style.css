@@ -396,3 +396,8 @@ body{
 .dot.active{
     background-color: var(--color-text);
 }
+
+.loading{
+    opacity: 50%;
+    pointer-events: none;
+}
