@@ -3,7 +3,6 @@ import loadingGif from "../images/loading.gif";
 import populateDom from "./dom";
 import displayWeather from "./displayWeather";
 import getUrl from "./getUrl";
-import displayLocalWeather from "./displayLocalWeather";
 
 // Add a loading Gif
 const loading = document.createElement("div");
@@ -16,4 +15,3 @@ document.body.append(loading);
 
 populateDom();
 displayWeather(getUrl());
-displayLocalWeather();

@@ -20,13 +20,23 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 body{
-    background-color: #222;
-    color: white;
     --color-primary: #26629A;
     --color-dark-1: #181B21;
     --color-dark-2: #222935;
     --color-text: #fff;
     --color-dark-3: #3E485E;
+    color: var(--color-text);
+    background-color: var(--color-dark-1);
+}
+
+body.light {
+    --color-primary: #26629A;
+    --color-dark-1: #ffffff;
+    --color-dark-2: #e4e4e4;
+    --color-dark-3: #b4b4b4;
+    --color-text: #333;
+    color: var(--color-text);
+    background-color: var(--color-dark-1);
 }
 
 .content{
@@ -131,8 +141,8 @@ body{
     position: absolute;
     left: 50%;  
     transform: translateX(-50%);
-    top: 55px;
-    font-size: 14px;
+    top: 50px;
+    font-size: 13px;
 }
 
 .hidden{
@@ -156,6 +166,7 @@ body{
     position: absolute;
     left: 0px;
     top: -5px;
+    user-select: none;
 }
 
 .dark > * > .theme-icon{
@@ -184,11 +195,12 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: -10px;
 }
 
 .units-container{
     display: flex;
-    gap: 12px;
+    gap: 10px;
     justify-content: center;
     align-items: center;
 }
@@ -389,7 +401,7 @@ body{
 .dot{
     width: 8px;
     height: 8px;
-    border: 2px solid white;
+    border: 2px solid var(--color-text);
     border-radius: 100px;
 }
 
@@ -401,4 +413,20 @@ body{
     opacity: 50%;
     pointer-events: none;
     user-select: none;
+}
+
+
+/* Light Theme Adjustments */
+
+body.light .unit-btn{
+    color: var(--color-text);
+}
+
+body.light .unit-btn.active {
+    color: var(--color-dark-1)
+}
+
+body.light .current-card-icon, body.light .search-icon{
+    filter: invert(80%);
+    /* filter: invert(1); */
 }

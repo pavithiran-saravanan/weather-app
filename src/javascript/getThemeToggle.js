@@ -18,10 +18,12 @@ export default function getThemeToggle() {
       themeToggle.classList.remove("dark");
       themeToggle.classList.add("light");
       themeIcon.src = iconThemeLight;
+      document.body.classList.add("light");
     } else {
       themeToggle.classList.remove("light");
       themeToggle.classList.add("dark");
       themeIcon.src = iconThemeDark;
+      document.body.classList.remove("light");
     }
   });
   return themeToggle;
