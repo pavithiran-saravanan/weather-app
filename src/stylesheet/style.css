@@ -39,6 +39,27 @@ body.light {
     background-color: var(--color-dark-1);
 }
 
+/* Experiment */
+body {
+    --color-primary: #26629A;
+    --color-dark-1: #181B21;
+    --color-dark-2: #00000056;
+    --color-text: #fff;
+    --color-dark-3: #3E485E;
+    color: var(--color-text);
+    background-color: var(--color-dark-1);
+}
+
+body.light{
+    --color-primary: #26629A;
+    --color-dark-1: #ffffff;
+    --color-dark-2: rgba(239, 243, 250, 0.199);
+    --color-dark-3: #b4b4b4;
+    --color-text: #000;
+    color: var(--color-text);
+    background-color: var(--color-dark-1);
+}
+
 .content{
     min-height: 100vh;
     background-color: var(--color-dark-1);
@@ -432,3 +453,22 @@ body.light .current-card-icon, body.light .search-icon, body.light .left-arrow, 
 body.light .current-card-value, body.light .current-card-label, body.light .current-condition{
     text-shadow: none;
 }
+
+
+/* Experiment */
+.content {
+    background: #1069AD;
+    background: linear-gradient(135deg, #062d4b, #020c2e);
+}
+
+body.light .content{
+    background-color: #8BC6EC;
+    background: linear-gradient(135deg, #9fd1f7, #a0b3f1);
+
+    /* background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%); */
+}
+
+body.light .current-card-icon, body.light .search-icon, body.light .left-arrow, body.light .right-arrow{
+    filter: invert(100%);
+}
+
