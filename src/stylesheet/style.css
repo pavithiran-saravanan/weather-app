@@ -26,90 +26,26 @@ body{
     --color-dark-2: #222935;
     --color-text: #fff;
     --color-dark-3: #3E485E;
+    height: 100%;
 }
 
 .content{
+    height: 100dvh;
+    background-color: var(--color-dark-1);
     padding: 30px;
 }
 
-.current-title, .hourly-title{
-    font-size: 30px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.inactive{
+.inactive {
     opacity: 50%;
     pointer-events: none;
     user-select: none;
 }
-.current-container>div{
-    gap: 3px;
-}
 
-.hourly-time{
-    font-size: 20px;
-    font-weight: 600;
-}
-.hidden{
+.hidden {
     display: none;
 }
 
-.search-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    position: relative;
-}
-
-/* .search-bar {
-    position: relative;
-}
-
-.search-bar, .search-bar:focus{
-    height: 40px;
-    padding: 0px 16px;
-    border-radius: 50px;
-    outline: 0px;
-    border: 2px solid rgb(218, 123, 34);
-    font-size: 14px;
-    font-weight: 600;
-    width: 400px;
-    background-color: rgba(255, 255, 255, 0);
-    color: white;
-}
-
-.search-bar:focus{
-    border-color: rgb(248, 143, 45);
-} */
-
-.search-button{
-    height: 40px;
-    min-width: 40px;
-    border: 0px;
-    outline: 0px;
-    border-radius: 50px;
-    background-color: rgb(218, 123, 34);
-    color: white;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.wind-direction-icon{
-    width: 50px;
-}
-
-.search-button:hover{
-    /* transform: scale(1.05); */
-    background-color: rgb(231, 130, 35);
-}
-
-.search-icon{
-    width: 20px;
-}
-
-.loading-gif{
+.loading-gif {
     position: fixed;
     width: 80px;
     left: 50%;
@@ -118,22 +54,8 @@ body{
     z-index: 10;
 }
 
-/* .error{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 55px;
-    font-size: 14px;
-    font-style: italic;
-    z-index: 100;
-    color: rgb(231, 130, 35);
-} */
-
-
-/* -------------------------------------- */
-.content{
-    height: 100svh;
-    background-color: var(--color-dark-1);
+.search-icon {
+    width: 20px;
 }
 
 /* Header */
@@ -195,6 +117,7 @@ body{
     left: 18px;
     top: 50%;
     transform: translateY(-50%);
+    user-select: none;
 }
 
 .error{
@@ -283,22 +206,28 @@ body{
 /* Current Section */
 .current-container{
     display: flex;
-    width: 90%;
+    width: 80%;
     margin: auto;
-    gap: 5px;
+    gap: 10px;
     margin-bottom: 30px;
 }
 
 .current-left, .current-right{
+    flex: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5px;
+    gap: 10px;
 }
 
 /* Current card */
 .current-card{
     display: grid;
     gap: 5px;
+    background-color: var(--color-dark-2);
+    place-content: center;
+    place-items: center;
+    padding: 20px 0px;
+    min-width: 150px;
 }
 
 .current-card-icon{
@@ -317,42 +246,51 @@ body{
 }
 
 .current-center{
+    flex: 1;
     display: grid;
+    place-items: center;
+    place-content: center;
+    /* gap: 20px; */
+    min-width: 300px;
+    background-color: var(--color-dark-2);
     text-align: center;
-    gap: 10px;
 }
 
 .current-center-main{
     display: grid;
-    gap: 5px;
+    margin-top: -20px;
 }
 
 .current-center-icon{
-
+    width: 90px;
+    place-self: center;
+    margin-bottom: -15px;
 }
 
 .current-center-body{
     font-weight: 600;
     display: grid;
-    gap: 5px;
 }
 
 .current-temp{
     font-size: 65px;
+    margin-bottom: -10px;
 }
 
 .current-condition{
     font-size: 28px;
+    margin-bottom: 3px;
 }
 
 .current-location{
     font-size: 14px;
-    color: var(--color-primary);
+    color: var(--color-primary)
 }
 
 .current-center-datetime{
     color: var(--color-dark-3);
     font-size: 13px;
+    display:none;
 }
 
 /* Hourly Container */
@@ -424,6 +362,7 @@ body{
 .carousal-main{
     display: flex;
     gap: 9px;
+    user-select: none;
 }
 
 .dots{

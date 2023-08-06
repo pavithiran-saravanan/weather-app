@@ -6,10 +6,7 @@ import getWeatherData from "./getWeatherData";
 
 export default function displayWeather(src) {
   // Start of loading
-  // loading.classList.remove("hidden");
-  // currentContainer.classList.add("inactive");
-  // hourlyContainer.classList.add("inactive");
-  // error.classList.add("hidden");
+  document.querySelector(".loading").classList.remove("hidden");
 
   // Response from API
   const myWeather = getWeatherData(src);
@@ -20,13 +17,14 @@ export default function displayWeather(src) {
       if (!data) return;
       const filteredData = getCurrentData(data);
       const currentItems = getCurrentItems(filteredData);
-      console.log(filteredData, currentItems);
-      // currentWeatherIcon.src = filteredData.weatherIcon;
-      // windDirectionIcon.style.rotate = `${filteredData.windDegree}deg`;
-      // currentContainer.textContent = "";
-      // getCurrentItems(filteredData).forEach((item) =>
-      //   currentContainer.append(item)
-      // );
+
+      const left = document.querySelector(".current-left");
+      const center = document.querySelector(".current-center");
+      const right = document.querySelector(".current-right");
+
+      left.replaceChildren(...currentItems[0]);
+      center.replaceChildren(...currentItems[1]);
+      right.replaceChildren(...currentItems[2]);
     })
     .catch((err) => console.log(err));
 
@@ -36,7 +34,6 @@ export default function displayWeather(src) {
       if (!data) return;
       const hourlyData = getHourlyData(data);
       const hourlyItems = getHourlyItems(hourlyData);
-      console.log(hourlyData, hourlyItems);
 
       const set1 = document.querySelector(".set-1");
       const set2 = document.querySelector(".set-2");
@@ -47,9 +44,7 @@ export default function displayWeather(src) {
       set3.replaceChildren(...hourlyItems.slice(16, 24));
 
       // End of loading
-      // loading.classList.add("hidden");
-      // currentContainer.classList.remove("inactive");
-      // hourlyContainer.classList.remove("inactive");
+      document.querySelector(".loading").classList.add("hidden");
     })
     .catch((err) => console.log(err));
 }
