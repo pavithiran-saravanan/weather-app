@@ -41,7 +41,7 @@ function getCurrentCenterMain(obj) {
   const currentCondition = comp("div", "current-condition");
   currentCondition.textContent = obj.condition;
   const currentLocation = comp("div", "current-location");
-  currentLocation.textContent = `${obj.name}, ${obj.country}`;
+  currentLocation.textContent = `${obj.name}, ${obj.region}, ${obj.country}`;
   console.log(obj);
   body.append(currentTemp, currentCondition, currentLocation);
 
