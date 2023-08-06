@@ -6,6 +6,23 @@ import iconThemeLight from "../images/theme.svg";
 import iconLeftArrow from "../images/left-arrow.svg";
 import iconRightArrow from "../images/right-arrow.svg";
 
+function getSearchBar() {
+  const searchBar = comp("div", "search-bar");
+
+  const searchInput = comp(
+    "input",
+    "search-input",
+    { type: "search" },
+    { placeholder: "Search Location" }
+  );
+  const searchIcon = comp("img", "search-icon", { src: iconSearch });
+  const error = comp("div", "error hidden");
+  error.textContent = "Place Not Found";
+  searchBar.append(searchIcon, searchInput, error);
+
+  return searchBar;
+}
+
 function getThemeToggle() {
   const themeToggle = comp("div", "theme-toggle dark");
 
@@ -71,9 +88,9 @@ function getCarousalMain() {
   carousalMain.addEventListener("click", (e) => {
     const dotsArr = [dot1, dot2, dot3];
     const curr = dots.querySelector(".active");
-    const index = dotsArr.indexOf(curr);
-    const next = index + 1 > 2 ? dotsArr[0] : dotsArr[index + 1];
-    const prev = index - 1 < 0 ? dotsArr[2] : dotsArr[index - 1];
+    const currIndex = dotsArr.indexOf(curr);
+    const nextIndex = currIndex + 1 > 2 ? 0 : currIndex + 1;
+    const prevIndex = currIndex - 1 < 0 ? 2 : currIndex - 1;
 
     if (e.target === dot1 || e.target === dot2 || e.target === dot3) {
       curr.classList.remove("active");
@@ -81,14 +98,23 @@ function getCarousalMain() {
     }
     if (e.target === rightArrow) {
       curr.classList.remove("active");
-      next.classList.add("active");
+      dotsArr[nextIndex].classList.add("active");
     }
     if (e.target === leftArrow) {
       curr.classList.remove("active");
-      prev.classList.add("active");
+      dotsArr[prevIndex].classList.add("active");
     }
-  });
 
+    const selectedDot = dots.querySelector(".active");
+    const indexOfSelectedDot = dotsArr.indexOf(selectedDot);
+    const sets = document.querySelectorAll(".set");
+    sets.forEach((set) => {
+      set.classList.remove("active");
+    });
+    document
+      .querySelector(`.set-${indexOfSelectedDot + 1}`)
+      .classList.add("active");
+  });
   return carousalMain;
 }
 
@@ -106,23 +132,10 @@ export default function populateDom() {
 
   // header's children
   const locationButton = comp("button", "location-btn");
-  const searchBar = comp("div", "search-bar");
-  header.append(locationButton, searchBar, getThemeToggle());
+  header.append(locationButton, getSearchBar(), getThemeToggle());
 
   const locationIcon = comp("img", "location-icon", { src: iconLocation });
   locationButton.append(locationIcon);
-
-  // searchbar's children
-  const searchInput = comp(
-    "input",
-    "search-input",
-    { type: "search" },
-    { placeholder: "Search Location" }
-  );
-  const searchIcon = comp("img", "search-icon", { src: iconSearch });
-  const error = comp("div", "error hidden");
-  error.textContent = "Place Not Found";
-  searchBar.append(searchIcon, searchInput, error);
 
   // unitsSection children
   unitsSection.append(getUnitsContainer());
