@@ -31,6 +31,27 @@ function getThemeToggle() {
   return themeToggle;
 }
 
+function getUnitsContainer() {
+  const unitsContainer = comp("div", "units-container");
+
+  const celsiusButton = comp("button", "unit-btn celsius-btn active");
+  celsiusButton.textContent = "Celsius";
+  const fahrenheitButton = comp("button", "unit-btn fahrenheit-btn");
+  fahrenheitButton.textContent = "Fahrenheit";
+  unitsContainer.append(celsiusButton, fahrenheitButton);
+
+  unitsContainer.addEventListener("click", (e) => {
+    if (e.target === celsiusButton) {
+      celsiusButton.classList.add("active");
+      fahrenheitButton.classList.remove("active");
+    } else if (e.target === fahrenheitButton) {
+      fahrenheitButton.classList.add("active");
+      celsiusButton.classList.remove("active");
+    }
+  });
+  return unitsContainer;
+}
+
 // Add basic dom structure
 export default function populateDom() {
   const content = document.querySelector(".content");
@@ -59,16 +80,12 @@ export default function populateDom() {
     { placeholder: "Search Location" }
   );
   const searchIcon = comp("img", "search-icon", { src: iconSearch });
-  const error = comp("div", "error");
+  const error = comp("div", "error hidden");
+  error.textContent = "Place Not Found";
   searchBar.append(searchIcon, searchInput, error);
 
   // unitsSection children
-  const celsiusButton = comp("button", "unit-btn celsius-btn active");
-  celsiusButton.textContent = "Celsius";
-  const fahrenheitButton = comp("button", "unit-btn fahrenheit-btn");
-  fahrenheitButton.textContent = "Fahrenheit";
-
-  unitsSection.append(celsiusButton, fahrenheitButton);
+  unitsSection.append(getUnitsContainer());
 
   // Current Container's children
   const currentLeft = comp("div", "current-left");
