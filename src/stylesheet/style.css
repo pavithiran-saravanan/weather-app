@@ -430,3 +430,7 @@ body.light .current-card-icon, body.light .search-icon{
     filter: invert(80%);
     /* filter: invert(1); */
 }
+
+body.light .current-card-value, body.light .current-card-label, body.light .current-condition{
+    text-shadow: none;
+}
