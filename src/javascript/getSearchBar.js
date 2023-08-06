@@ -22,6 +22,8 @@ export default function getSearchBar() {
     if (e.key === "Enter" && searchInput.value) {
       displayWeather(getUrl(searchInput.value));
     }
+    if (!document.querySelector(".error").classList.contains("hidden"))
+      document.querySelector(".error").classList.add("hidden");
   });
 
   return searchBar;

@@ -5,16 +5,15 @@ import displayWeather from "./displayWeather";
 import getUrl from "./getUrl";
 import displayLocalWeather from "./displayLocalWeather";
 
-populateDom();
-
 // Add a loading Gif
 const loading = document.createElement("div");
 const loadingIcon = document.createElement("img");
 loadingIcon.classList.add("loading-gif");
 loadingIcon.src = loadingGif;
-loading.classList.add("loading", "hidden");
+loading.classList.add("loading-container", "hidden");
 loading.append(loadingIcon);
-document.querySelector(".current-container").append(loading);
+document.body.append(loading);
 
+populateDom();
 displayWeather(getUrl());
 displayLocalWeather();

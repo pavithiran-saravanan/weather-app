@@ -1,3 +1,5 @@
+import { stopLoading } from "./loading";
+
 export default async function getWeatherData(src) {
   try {
     const response = await fetch(src, { mode: "cors" });
@@ -5,9 +7,8 @@ export default async function getWeatherData(src) {
     const json = await response.json();
     return json;
   } catch (err) {
-    // error.classList.remove("hidden");
-    // loading.classList.add("hidden");
-    console.log(err);
+    stopLoading();
+    document.querySelector(".error").classList.remove("hidden");
   }
   return undefined;
 }
