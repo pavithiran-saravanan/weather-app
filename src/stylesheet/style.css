@@ -575,7 +575,7 @@ body.light .current-card-icon, body.light .search-icon, body.light .left-arrow, 
         gap: 8px;
     }
     .content {
-        /* padding: 10px 10px; */
+        padding: 15px 15px;
         gap: 15px;
     }
     .current-center{
@@ -635,5 +635,8 @@ body.light .current-card-icon, body.light .search-icon, body.light .left-arrow, 
     }
     .hourly-card{
         min-height: 60px;
+    }
+    .current-temp{
+        font-size: 50px;
     }
 }
