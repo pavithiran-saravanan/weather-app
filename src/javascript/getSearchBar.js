@@ -13,9 +13,8 @@ export default function getSearchBar() {
     { placeholder: "Search Location" }
   );
   const searchIcon = comp("img", "search-icon", { src: iconSearch });
-  const error = comp("div", "error hidden");
-  error.textContent = "Place Not Found";
-  searchBar.append(searchIcon, searchInput, error);
+
+  searchBar.append(searchIcon, searchInput);
 
   // Handle search
   searchInput.addEventListener("keydown", (e) => {

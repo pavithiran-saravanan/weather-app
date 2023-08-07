@@ -27,13 +27,16 @@ export default function populateDom() {
   const unitsSection = comp("div", "units-section");
   const currentContainer = comp("div", "current-container");
   const hourlyContainer = comp("div", "hourly-container");
+
   content.append(header, unitsSection, currentContainer, hourlyContainer);
 
   // header's children
   header.append(getLocationButton(), getSearchBar(), getThemeToggle());
 
   // unitsSection children
-  unitsSection.append(getUnitsContainer());
+  const error = comp("div", "error hidden");
+  error.textContent = "Place Not Found";
+  unitsSection.append(getUnitsContainer(), error);
 
   // Current Container's children
   const currentLeft = comp("div", "current-left");
