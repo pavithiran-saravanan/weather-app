@@ -41,7 +41,7 @@ body.light {
 
 /* Experiment */
 body {
-    --color-primary: #26629A;
+    --color-primary: #26439a;
     --color-dark-1: #181B21;
     --color-dark-2: #00000056;
     --color-text: #fff;
@@ -123,7 +123,7 @@ body.light{
 .search-bar{
     position: relative;
     width: 400px;
-    min-width: 220px;
+    min-width: 200px;
 }
 
 .search-input{
@@ -267,7 +267,7 @@ body.light{
     place-content: center;
     place-items: center;
     padding: 22px 0px;
-    min-width: 150px;
+    min-width: 130px;
 }
 
 .current-card-icon{
@@ -284,7 +284,7 @@ body.light{
     font-size: 14px;
     font-weight: 600;
     color: var(--color-primary);
-    text-shadow: 0px 0px 4px #3e6ac973;
+    text-shadow: 0px 0px 4px #524aa880;
 }
 
 .current-center{
@@ -292,7 +292,7 @@ body.light{
     display: grid;
     place-items: center;
     place-content: center;
-    min-width: 350px;
+    min-width: 400px;
     background-color: var(--color-dark-2);
     text-align: center;
     padding: 20px 20px;
@@ -324,7 +324,8 @@ body.light{
     font-size: 28px;
     margin-bottom: 8px;
     color: var(--color-primary);
-    text-shadow: 0px 0px 4px #3e6ac973;
+    /* text-shadow: 0px 0px 4px #3e6ac973; */
+    text-shadow: 0px 0px 4px #524aa880;
 }
 
 .current-location{
@@ -472,3 +473,168 @@ body.light .current-card-icon, body.light .search-icon, body.light .left-arrow, 
     filter: invert(100%);
 }
 
+
+/* Media Queries */
+@media (max-width: 1100px){
+    .current-container{
+        grid-template-columns: 1fr 1fr;
+    }
+    .current-center{
+        grid-column: 1/-1;
+        grid-row: 1/2;
+    }
+    .current-center{
+        height: 320px;
+        padding-top: 30px;
+    }   
+    .hourly-container{
+        width: 90%;
+    }
+}
+
+@media (max-width: 900px) {
+    .header, .hourly-container, .current-container{
+        width: 100%;
+    }
+}
+
+@media (max-width: 724px) {
+    .hourly-container{
+        gap: 30px;
+    }
+    .carousal-main{
+        justify-content: space-between;
+        width: 30%;
+    }
+    .set{
+        flex-direction: column;
+        /* gap: 10px; */
+    }
+    .hourly-card{
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        justify-content: space-between;
+        width: clamp(240px, 80%, 500px);
+        min-height: 80px;
+    }
+    .hourly-card:not(:last-child)::after{
+    content: none;
+    }
+    .hourly-card:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        border-bottom: 2px solid var(--color-dark-2);
+        height: 100%;
+        width: 100%;
+    }
+    .hourly-time{
+        font-size: 20px;
+    }
+    .hourly-icon{
+        width: 50px;
+    }
+    .dot{
+        width: 10px;
+        height: 10px;
+    }
+    .current-container{
+        
+    }
+    .current-left, .current-right{
+        grid-column: 1/-1;
+    }
+}
+
+@media (max-width: 550px){
+    .content{
+        padding: 25px 20px;
+        gap: 20px;
+    }
+    .units-section{
+        margin-top: -3px;
+    }
+    .current-container{
+        margin: 0px;
+        gap: 5px;
+    }
+    .current-left, .current-right{
+        gap: 5px;
+    }
+    .hourly-container{
+        margin: 0px;
+        margin-top: -10px;
+        gap: 10px;
+    }
+    .current-center {
+        min-width: 320px;
+    }
+}
+
+@media (max-width: 400px) {
+    .header{
+        gap: 8px;
+    }
+    .content {
+        /* padding: 10px 10px; */
+        gap: 15px;
+    }
+    .current-center{
+        min-width: 280px;
+    }
+    .hourly-container{
+        gap: 4px;
+    }
+    .search-input{
+        height: 35px;
+        font-size: 13px;
+        padding-left: 35px;
+    }
+    .search-icon{
+        left: 10px;
+        width: 18px;
+    }
+    .location-btn{
+        width: 28px;
+        height: 28px;
+    }
+    .location-icon{
+        width: 20px;
+    }
+    .theme-toggle{
+        height: 30px;
+        align-items: center;
+        display: flex;
+        align-items: center;
+    }
+    .theme-toggle-track{
+        width: 35px;
+        min-height: 20px;
+    }
+    .theme-toggle-circle{
+        width: 25px;
+        height: 25px;
+        top: 3px;
+    }
+    .theme-toggle.dark .theme-toggle-circle{
+        left: 30%;
+    }
+    .theme-icon{
+        width: 18px;
+    }
+    .unit-btn{
+        height: 30px;
+    }
+    .hourly-time{
+        font-size: 15px;
+    }
+    .hourly-temp {
+        font-size: 20px;
+    }
+    .hourly-icon{
+        width: 40px;
+    }
+    .hourly-card{
+        min-height: 60px;
+    }
+}
