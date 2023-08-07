@@ -5,6 +5,7 @@ import getThemeToggle from "./getThemeToggle";
 import getUnitsContainer from "./getUnitsContainer";
 import getCarousalMain from "./getCarousalMain";
 import displayLocalWeather from "./displayLocalWeather";
+import loading from "./loading";
 
 function getLocationButton() {
   const locationButton = comp("button", "location-btn");
@@ -21,6 +22,8 @@ function getLocationButton() {
 // Add basic dom structure
 export default function populateDom() {
   const content = document.querySelector(".content");
+
+  content.append(loading());
 
   // content's children
   const header = comp("header", "header");

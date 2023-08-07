@@ -19,27 +19,6 @@ input[type="search"]::-webkit-search-results-decoration {
     -webkit-appearance: none;
 }
 
-body{
-    --color-primary: #26629A;
-    --color-dark-1: #181B21;
-    --color-dark-2: #222935;
-    --color-text: #fff;
-    --color-dark-3: #3E485E;
-    color: var(--color-text);
-    background-color: var(--color-dark-1);
-}
-
-body.light {
-    --color-primary: #26629A;
-    --color-dark-1: #ffffff;
-    --color-dark-2: rgb(239, 243, 250);
-    --color-dark-3: #b4b4b4;
-    --color-text: #333;
-    color: var(--color-text);
-    background-color: var(--color-dark-1);
-}
-
-/* Experiment */
 body {
     --color-primary: #26439a;
     --color-dark-1: #181B21;
@@ -71,12 +50,6 @@ body.light{
     gap: 40px;
 
     /* justify-content: center; */
-}
-
-.inactive {
-    opacity: 50%;
-    pointer-events: none;
-    user-select: none;
 }
 
 .hidden {
@@ -168,10 +141,6 @@ body.light{
     transform: translateX(-50%);
     top: 128%;
     color: rgb(188, 34, 34);
-}
-
-.hidden{
-    display: none;
 }
 
 /* Theme Toggle */
@@ -653,4 +622,41 @@ body.light .current-card-icon, body.light .search-icon, body.light .left-arrow, 
     .current-temp{
         font-size: 50px;
     }
+}
+
+.loading-component{
+    background-color: #84848411;
+    backdrop-filter: blur(2px);
+    scroll-behavior: none;
+    position: fixed;
+    z-index: 11;
+    display: grid;
+    place-content: center;
+    top: 0px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+    user-select: none;
+}
+.loading-component.hidden{
+    display: none;
+}
+
+@keyframes rotating {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.loading-circle {
+    width: 60px;
+    height: 60px;
+    border: 10px solid var(--color-text);
+    border-top-color: var(--color-primary);
+    border-radius: 100px;
+    animation: rotating 1s linear infinite;
 }
