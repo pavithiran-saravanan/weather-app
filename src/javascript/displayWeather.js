@@ -56,7 +56,6 @@ export default function displayWeather(src) {
       if (!data) return;
       displayHourlyWeather(data);
       stopLoading();
-      console.log("past");
     })
     .catch((err) => console.log(err));
 }

@@ -44,7 +44,6 @@ function getCurrentCenterMain(obj) {
   currentLocation.textContent = obj.region
     ? `${obj.name}, ${obj.region}, ${obj.country}`
     : `${obj.name}, ${obj.country}`;
-  console.log(obj);
   body.append(currentTemp, currentCondition, currentLocation);
 
   main.append(icon, body);
