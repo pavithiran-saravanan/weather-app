@@ -15,7 +15,7 @@ Check out the live demo of the project here https://pavithiran-saravanan.github.
 
 # Features
 - Get local weather info
-- Option to switch between American and Metric units
+- Option to switch between Celsius and Fahrenheit
 - Get weather forecast for the next 24 Hours
 - Dark/Light Mode
 
