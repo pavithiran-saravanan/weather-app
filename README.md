@@ -1,5 +1,5 @@
 # Weather App
-A Weather application.
+A weather application that allows users to search for a specific location and toggle between displaying the weather data in Fahrenheit or Celsius. The application utilizes the WeatherAPI to retrieve weather information and provides a simple and interactive user interface.
 
 # Demo
 Check out the live demo of the project here https://pavithiran-saravanan.github.io/weather-app/
