@@ -7,7 +7,7 @@ Check out the live demo of the project here https://pavithiran-saravanan.github.
 # Built Using
 - HTML
 - CSS
-- JavaScript
+- JavaScript 
 - Webpack
 - ESLint
 - Prettier
